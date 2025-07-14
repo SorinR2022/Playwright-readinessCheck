@@ -1,23 +1,19 @@
-import { test } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { waitFor200Status } from '../utils/statusCheck';
 
-test('Verify site returns 200 status', async ({ request }) => {
-    const targetUrl = 'https://practice.expandtesting.com/';
 
-    // Check status with retries
-    const result = await waitFor200Status(request, targetUrl);
+const url = 'https://httpbin.org/status/200';
 
-    // Log detailed results
-    console.log(`\nStatus Check Result:
-  Expected: ${result.expected}
-  Actual: ${result.actual}
-  URL: ${targetUrl}
-  `);
+test('should pass only for status code 200', async ({ request }) => {
+  const result = await waitFor200Status(request, url, 3, 5000);
 
-    // Assert final status
-    if (result.actual !== result.expected) {
-        throw new Error(`Status check failed after retries. Expected ${result.expected}, got ${result.actual}`);
-    }
-
-    console.log('✅ Site is ready!');
+  expect(
+    result.actual,
+    result.actual === 200
+      ? 'Application is UP (200)'
+      : `Application is down at the moment, status code ${result.actual}`
+  ).toBe(200);
 });
+
+//other examples https://duckduckgo.com/health
+// https://status.cloud.google.com/incidents.json

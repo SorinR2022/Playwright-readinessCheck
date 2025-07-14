@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import { TestConfig } from './testConfig';
 
 export default defineConfig({
   testDir: './tests',
@@ -14,18 +15,5 @@ export default defineConfig({
     // headless: false,
     trace: 'on-first-retry',
   },
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-  ],
+  projects: TestConfig.getProjects(devices),
 });
