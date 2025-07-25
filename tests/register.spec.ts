@@ -16,6 +16,7 @@ test.describe('Registration Page', () => {
   });
 
   test('Register page readiness check', async ({ page }) => {
+    
     await expect(page.locator('input[name="username"]')).toBeVisible();
     await expect(page.locator('input[name="password"]')).toBeVisible();
     await expect(page.locator('input[name="confirmPassword"]')).toBeVisible();
@@ -23,6 +24,7 @@ test.describe('Registration Page', () => {
   });
 
   test('Register with valid username and password', async ({ page }) => {
+    
     const uniqueUsername = `TestUser${Date.now()}`;
 
     const usernameInput = page.locator('input[name="username"]');

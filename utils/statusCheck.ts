@@ -6,6 +6,7 @@ export async function waitFor200Status(
   maxRetries = 10,
   delay = 5000
 ): Promise<{ expected: number, actual: number }> {
+ 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       const response = await request.get(url, { maxRedirects: 0 });

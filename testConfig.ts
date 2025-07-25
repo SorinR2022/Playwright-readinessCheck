@@ -1,4 +1,4 @@
-import type { Project} from '@playwright/test';
+import type { Project } from '@playwright/test';
 
 export class TestConfig {
   static headed = false; // true = headed, false = headless

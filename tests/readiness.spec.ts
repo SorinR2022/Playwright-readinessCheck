@@ -5,6 +5,7 @@ import { waitFor200Status } from '../utils/statusCheck';
 const url = 'https://httpbin.org/status/200';
 
 test('should pass only for status code 200', async ({ request }) => {
+  
   const result = await waitFor200Status(request, url, 3, 5000);
 
   expect(
